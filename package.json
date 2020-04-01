@@ -1,0 +1,24 @@
+{
+  "name": "node-data",
+  "version": "0.0.0",
+  "description": "A library to standardize api calls and responses",
+  "repository": "git@github.com:zoocasa/node-data.git",
+  "author": "Endri Gjiri",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "watch": "tsc -w",
+    "start": "yarn watch",
+    "test": "tsc && qunit dist",
+    "test:live": "nodemon -w ./dist --exec 'clear && qunit dist'"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.12",
+    "nodemon": "^1.18.3",
+    "qunit": "^2.6.1",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.0.1"
+  }
+}
