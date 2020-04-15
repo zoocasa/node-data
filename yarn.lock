@@ -365,10 +365,10 @@ duplexer3@^0.1.4:
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
   integrity sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI=
 
-egjiri-node-kit@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/egjiri-node-kit/-/egjiri-node-kit-0.4.0.tgz#b5b16778c3772968b9cdd55da08706bf20523484"
-  integrity sha512-WnDYM8XgMt8WJLO7OsWSfRHVYQXukW2+UKGAbsRhtT8b4AYbeM3Rh8CDoFqwHMKdRukfU963G0kLUqmJTfiPsA==
+egjiri-node-kit@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/egjiri-node-kit/-/egjiri-node-kit-0.4.2.tgz#6d2d72eb4d0e65b8eb9ebd1594bc51b983308b13"
+  integrity sha512-Kipgn3EscivOgClLi8l64+qGfjlxhJ1g19IOcWtyLylC0GDjKi6GdtPeGog6baa9Tx9B2OyGpu7hB7R6JPuwNg==
   dependencies:
     underscore.string "^3.3.5"
 

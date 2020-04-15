@@ -13,5 +13,5 @@ type jsonApiResource = {
 }
 
 type jsonApiPayload = {
-  data: jsonApiResource[]
+  data: jsonApiResource[],
 }
