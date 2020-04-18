@@ -6,9 +6,8 @@ class Serializer {
         this.createModel = createModel;
     }
     normalizePayload(payload) {
-        return payload.map(item => {
-            return this.buildModel(item);
-        });
+        const content = payload.map(item => this.buildModel(item));
+        return this.proxyContent(content);
     }
     buildModel(properties) {
         properties = this.transformProperties(properties);
@@ -16,6 +15,20 @@ class Serializer {
     }
     transformProperties(properties) {
         return camelizeKeys(properties);
+    }
+    proxyContent(content, meta = {}) {
+        return new Proxy(content, {
+            get: (obj, prop) => {
+                // The default behavior to return the value
+                if (prop in obj) {
+                    return obj[prop];
+                }
+                // Get the meta response properties
+                if (prop === 'meta') {
+                    return this.transformProperties(meta);
+                }
+            }
+        });
     }
 }
 exports.default = Serializer;
