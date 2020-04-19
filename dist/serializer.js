@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const { camelizeKeys } = require('egjiri-node-kit/dist/objects/objects');
-const proxy_1 = require("./utils/proxy");
+const proxy = require('egjiri-node-kit/dist/proxy/proxy').default;
 class Serializer {
     constructor(createModel) {
         this.createModel = createModel;
@@ -15,7 +15,7 @@ class Serializer {
         return this.createModel(properties);
     }
     proxyContent(content, meta = {}) {
-        return proxy_1.default(content, { meta: this.transformProperties(meta) });
+        return proxy(content, { meta: this.transformProperties(meta) });
     }
     transformProperties(properties) {
         return camelizeKeys(properties);

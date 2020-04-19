@@ -1,5 +1,5 @@
 const { camelizeKeys } = require('egjiri-node-kit/dist/objects/objects');
-import proxy from "./utils/proxy";
+const proxy = require('egjiri-node-kit/dist/proxy/proxy').default;
 
 export default class Serializer {
   createModel: modelCreator;

@@ -1,6 +1,6 @@
+const proxy = require('egjiri-node-kit/dist/proxy/proxy').default;
 import Adapter from "./adapter";
 import Serializer from "./serializer";
-import proxy from './utils/proxy';
 
 export default class Store {
   adapter: Adapter;

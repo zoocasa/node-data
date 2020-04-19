@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const proxy_1 = require("./utils/proxy");
+const proxy = require('egjiri-node-kit/dist/proxy/proxy').default;
 class Store {
     constructor(adapter, serializer) {
         this.adapter = adapter;
@@ -9,9 +9,9 @@ class Store {
     async query(params = {}) {
         const { payload, response, error } = await this.adapter.query(params);
         if (error) {
-            return proxy_1.default([], { response, error });
+            return proxy([], { response, error });
         }
-        return proxy_1.default(this.serializer.normalizePayload(payload), { response, error });
+        return proxy(this.serializer.normalizePayload(payload), { response, error });
     }
 }
 exports.default = Store;
