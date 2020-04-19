@@ -2,31 +2,36 @@ const unfetch = require('isomorphic-unfetch');
 const param = require('jquery-param');
 const { dasherize, pluralize } = require('egjiri-node-kit/dist/strings/strings');
 
+interface constructorArgs {
+  host?: string,
+  namespace: string,
+  modelName?: string,
+}
+
 export default class Adapter {
-  host: string;
-  namespace: string;
-  modelName: string;
+  resourcePath: string;
 
-  constructor({ host, namespace, modelName }) {
-    this.host = host || 'http://localhost:4200';
-    this.namespace = namespace;
-    this.modelName = modelName || this.constructor.name.replace(/Adapter$/, '');
+  constructor({ host, namespace, modelName }: constructorArgs) {
+    this.resourcePath = this.buildResourcePath(host, namespace, modelName);
   }
 
-  fetch(params: object) {
-    const url = this.buildUrl(params);
-    const fullUrl = [this.host, this.namespace, url].join('/');
-    return unfetch(fullUrl);
-  }
-
-  buildUrl(params: object) {
-    params = param(this.normalizeParams(params));
-    const url = dasherize(pluralize(this.modelName));
-    return [url, params].join('?');
+  public fetch(params: object) {
+    return unfetch(this.buildUrl(params));
   }
 
   // Overwrite in subclass!
-  normalizeParams(params: object) {
+  protected normalizeParams(params: object) {
     return params;
+  }
+
+  private buildResourcePath(host: string, namespace: string, modelName: string) {
+    host = host || 'http://localhost:4200';
+    modelName = modelName || this.constructor.name.replace(/Adapter$/, '');
+    return [host, namespace, dasherize(pluralize(modelName))].join('/');
+  }
+
+  private buildUrl(params: object) {
+    params = param(this.normalizeParams(params));
+    return [this.resourcePath, params].join('?');
   }
 }

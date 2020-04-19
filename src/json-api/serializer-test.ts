@@ -1,7 +1,7 @@
 import { test } from 'qunit';
 import Serializer from './serializer';
 
-test('test constructor', function(assert) {
+test('test JSONAPISerializer', function(assert) {
   const payload = {
     data: [
       { id: 1, type: 'users', attributes: { 'first-name': 'John' }},

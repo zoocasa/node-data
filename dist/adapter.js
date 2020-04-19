@@ -5,23 +5,23 @@ const param = require('jquery-param');
 const { dasherize, pluralize } = require('egjiri-node-kit/dist/strings/strings');
 class Adapter {
     constructor({ host, namespace, modelName }) {
-        this.host = host || 'http://localhost:4200';
-        this.namespace = namespace;
-        this.modelName = modelName || this.constructor.name.replace(/Adapter$/, '');
+        this.resourcePath = this.buildResourcePath(host, namespace, modelName);
     }
     fetch(params) {
-        const url = this.buildUrl(params);
-        const fullUrl = [this.host, this.namespace, url].join('/');
-        return unfetch(fullUrl);
-    }
-    buildUrl(params) {
-        params = param(this.normalizeParams(params));
-        const url = dasherize(pluralize(this.modelName));
-        return [url, params].join('?');
+        return unfetch(this.buildUrl(params));
     }
     // Overwrite in subclass!
     normalizeParams(params) {
         return params;
+    }
+    buildResourcePath(host, namespace, modelName) {
+        host = host || 'http://localhost:4200';
+        modelName = modelName || this.constructor.name.replace(/Adapter$/, '');
+        return [host, namespace, dasherize(pluralize(modelName))].join('/');
+    }
+    buildUrl(params) {
+        params = param(this.normalizeParams(params));
+        return [this.resourcePath, params].join('?');
     }
 }
 exports.default = Adapter;
