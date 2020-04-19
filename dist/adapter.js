@@ -7,12 +7,20 @@ class Adapter {
     constructor({ host, namespace, modelName }) {
         this.resourcePath = this.buildResourcePath(host, namespace, modelName);
     }
-    fetch(params) {
-        return unfetch(this.buildUrl(params));
+    async query(params) {
+        return this.fetch(this.buildUrl(params));
     }
-    // Overwrite in subclass!
     normalizeParams(params) {
         return params;
+    }
+    async fetch(url) {
+        const response = await unfetch(url);
+        if (response.ok) {
+            return response.json()
+                .then((payload) => ({ payload, response, error: false }))
+                .catch(error => ({ payload: null, response, error }));
+        }
+        return { payload: null, response, error: response.error || true };
     }
     buildResourcePath(host, namespace, modelName) {
         host = host || 'http://localhost:4200';
@@ -21,7 +29,12 @@ class Adapter {
     }
     buildUrl(params) {
         params = param(this.normalizeParams(params));
-        return [this.resourcePath, params].join('?');
+        if (params) {
+            return [this.resourcePath, params].join('?');
+        }
+        else {
+            return this.resourcePath;
+        }
     }
 }
 exports.default = Adapter;

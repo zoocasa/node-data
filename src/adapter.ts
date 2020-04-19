@@ -15,13 +15,22 @@ export default class Adapter {
     this.resourcePath = this.buildResourcePath(host, namespace, modelName);
   }
 
-  public fetch(params: object) {
-    return unfetch(this.buildUrl(params));
+  public async query(params: object) {
+    return this.fetch(this.buildUrl(params))
   }
 
-  // Overwrite in subclass!
   protected normalizeParams(params: object) {
     return params;
+  }
+
+  private async fetch(url: string) {
+    const response = await unfetch(url);
+    if (response.ok) {
+      return response.json()
+        .then((payload: object[]) => ({ payload, response, error: false }))
+        .catch(error => ({ payload: null, response, error }));
+    }
+    return { payload: null, response, error: response.error || true };
   }
 
   private buildResourcePath(host: string, namespace: string, modelName: string) {
@@ -32,6 +41,10 @@ export default class Adapter {
 
   private buildUrl(params: object) {
     params = param(this.normalizeParams(params));
-    return [this.resourcePath, params].join('?');
+    if (params) {
+      return [this.resourcePath, params].join('?');
+    } else {
+      return this.resourcePath;
+    }
   }
 }

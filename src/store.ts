@@ -1,5 +1,6 @@
 import Adapter from "./adapter";
 import Serializer from "./serializer";
+import proxy from './utils/proxy';
 
 export default class Store {
   adapter: Adapter;
@@ -10,11 +11,11 @@ export default class Store {
     this.serializer = serializer;
   }
 
-  async query(params: object) {
-    const res = await this.adapter.fetch(params);
-    if (res.ok) {
-      const payload: object[] = await res.json();
-      return this.serializer.normalizePayload(payload);
+  async query(params: object = {}) {
+    const { payload, response, error } = await this.adapter.query(params);
+    if (error) {
+      return proxy([], { response, error });
     }
+    return proxy(this.serializer.normalizePayload(payload), { response, error });
   }
 }

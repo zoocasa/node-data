@@ -6,8 +6,9 @@ interface constructorArgs {
 export default class Adapter {
     resourcePath: string;
     constructor({ host, namespace, modelName }: constructorArgs);
-    fetch(params: object): any;
+    query(params: object): Promise<any>;
     protected normalizeParams(params: object): object;
+    private fetch;
     private buildResourcePath;
     private buildUrl;
 }
