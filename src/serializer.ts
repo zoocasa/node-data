@@ -1,4 +1,5 @@
 const { camelizeKeys } = require('egjiri-node-kit/dist/objects/objects');
+import proxy from "./utils/proxy";
 
 export default class Serializer {
   createModel: modelCreator;
@@ -18,19 +19,7 @@ export default class Serializer {
   }
 
   protected proxyContent(content: any, meta: object = {}) {
-    return new Proxy(content, {
-      get: (obj, prop) => {
-        // The default behavior to return the value
-        if (prop in obj) {
-          return obj[prop];
-        }
-
-        // Get the meta response properties
-        if (prop === 'meta') {
-          return this.transformProperties(meta);
-        }
-      }
-    })
+    return proxy(content, { meta: this.transformProperties(meta) });
   }
 
   private transformProperties(properties: object) {
