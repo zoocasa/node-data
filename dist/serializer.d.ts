@@ -2,9 +2,9 @@ export default class Serializer {
     createModel: modelCreator;
     constructor(createModel: modelCreator);
     normalizePayload(payload: any): any;
-    buildModel(properties: object): object;
-    transformProperties(properties: object): any;
-    proxyContent(content: any, meta?: object): any;
+    protected buildModel(properties: object): object;
+    protected proxyContent(content: any, meta?: object): any;
+    private transformProperties;
 }
 declare type modelCreator = (modelProperties: object) => object;
 export {};

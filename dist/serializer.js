@@ -13,9 +13,6 @@ class Serializer {
         properties = this.transformProperties(properties);
         return this.createModel(properties);
     }
-    transformProperties(properties) {
-        return camelizeKeys(properties);
-    }
     proxyContent(content, meta = {}) {
         return new Proxy(content, {
             get: (obj, prop) => {
@@ -29,6 +26,9 @@ class Serializer {
                 }
             }
         });
+    }
+    transformProperties(properties) {
+        return camelizeKeys(properties);
     }
 }
 exports.default = Serializer;
