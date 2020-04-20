@@ -6,10 +6,11 @@ import JSONAPISerializer from './json-api/serializer';
 test('test Store', async function(assert) {
   let store, result;
 
-  store = new Store(new JSONAPIAdapter({ host: 'https://www.zoocasa.com', namespace: 'services/api/v3', modelName: 'TeamMember'}), new JSONAPISerializer(user => user));
-  result = await store.query({ filter: { category: 'technology' }});
+  store = new Store(new JSONAPIAdapter({ host: 'https://www.zoocasa.com', namespace: 'services/api/v3', modelName: 'Listing'}), new JSONAPISerializer(user => user));
+  result = await store.query({ filter: { status: 'available' }, page: { size: 2 }});
   assert.equal(result.response.status, 200);
-  assert.deepEqual(result.length, 11);
+  assert.deepEqual(result.length, 2);
+  assert.deepEqual(result.meta.pageSize, 2);
 
   store = new Store(new JSONAPIAdapter({ host: 'https://www.zoocasa.com', namespace: 'services/api/v3', modelName: 'Invalid'}), new JSONAPISerializer(user => user));
   result = await store.query({ filter: { category: 'technology' }});

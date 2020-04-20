@@ -16,6 +16,7 @@ export default class Store {
     if (error) {
       return proxy([], { response, error });
     }
-    return proxy(this.serializer.normalizePayload(payload), { response, error });
+    const normalizedPayload = this.serializer.normalizePayload(payload);
+    return proxy(normalizedPayload, { meta: normalizedPayload.meta, response, error });
   }
 }
