@@ -2,7 +2,7 @@ import Serializer from '../serializer';
 
 export default class JSONAPISerializer extends Serializer {
   public normalizePayload(payload: jsonApiPayload) {
-    const content = payload.data.map(item => this.buildModel(item.attributes));
+    const content = payload.data.map(item => this.buildModel({ id: item.id, ...item.attributes }));
     return this.proxyContent(content, payload.meta);
   }
 }

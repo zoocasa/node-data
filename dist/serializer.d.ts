@@ -4,7 +4,7 @@ export default class Serializer {
     normalizePayload(payload: any): any;
     protected buildModel(properties: object): object;
     protected proxyContent(content: any, meta?: object): any;
-    private transformProperties;
+    protected transformProperties(properties: object): any;
 }
 declare type modelCreator = (modelProperties: object) => object;
 export {};
