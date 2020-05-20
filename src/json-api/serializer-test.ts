@@ -15,6 +15,6 @@ test('test JSONAPISerializer', function(assert) {
     }
   };
   const response = new Serializer(modelProperties => modelProperties).normalizePayload(payload);
-  assert.deepEqual(response, [{ firstName: 'John' }, { firstName: 'Jane' }]);
+  assert.deepEqual(response, [{ id: 1, firstName: 'John' }, { id: 2, firstName: 'Jane' }]);
   assert.deepEqual(response.meta, { pageNumber: 1, pageSize: 25, totalPages: 1, totalCount: 2 });
 });
