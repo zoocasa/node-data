@@ -1,5 +1,6 @@
 import { test } from 'qunit';
 import Serializer from './serializer';
+import { testCreateModel } from '../serializer-test';
 
 test('test JSONAPISerializer', function(assert) {
   const payload = {
@@ -14,7 +15,7 @@ test('test JSONAPISerializer', function(assert) {
       'total-count': 2,
     }
   };
-  const response = new Serializer(modelProperties => modelProperties).normalizePayload(payload);
+  const response = new Serializer(testCreateModel).normalizePayload(payload);
   assert.deepEqual(response, [{ id: 1, firstName: 'John' }, { id: 2, firstName: 'Jane' }]);
   assert.deepEqual(response.meta, { pageNumber: 1, pageSize: 25, totalPages: 1, totalCount: 2 });
 });

@@ -19,4 +19,8 @@ export default class Store {
     const normalizedPayload = this.serializer.normalizePayload(payload);
     return proxy(normalizedPayload, { meta: normalizedPayload.meta, response, error });
   }
+
+  save(properties) {
+    return this.serializer.createModel(properties).save();
+  }
 }
