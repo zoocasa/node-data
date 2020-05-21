@@ -27,7 +27,4 @@ export default class Serializer {
   }
 }
 
-interface model {
-  save(): Promise<object>;
-}
-type modelCreator = (modelProperties: object) => model;
+type modelCreator = (modelProperties: object) => object;
