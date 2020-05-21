@@ -22,7 +22,7 @@ export default class Serializer {
     return proxy(content, { meta: this.transformProperties(meta) });
   }
 
-  protected transformProperties(properties: object) {
+  public transformProperties(properties: object) {
     return camelizeKeys(properties);
   }
 }

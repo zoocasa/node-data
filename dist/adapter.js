@@ -11,6 +11,26 @@ class Adapter {
     async query(params) {
         return this.fetch(this.buildUrl(params));
     }
+    save(properties) {
+        return unfetch(this.buildUrl(), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                data: {
+                    type: this.getNormalizedModel(),
+                    attributes: properties,
+                }
+            }),
+        }).then(async (response) => {
+            const data = await response.json();
+            if (data.errors) {
+                throw data;
+            }
+            return data;
+        });
+    }
     normalizeParams(params) {
         return params;
     }

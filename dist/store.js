@@ -15,7 +15,7 @@ class Store {
         return proxy(normalizedPayload, { meta: normalizedPayload.meta, response, error });
     }
     save(properties) {
-        return this.serializer.createModel(properties).save();
+        return this.adapter.save(this.serializer.transformProperties(properties));
     }
 }
 exports.default = Store;

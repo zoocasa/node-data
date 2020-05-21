@@ -4,7 +4,7 @@ export default class Serializer {
     normalizePayload(payload: any): any;
     protected buildModel(properties: object): model;
     protected proxyContent(content: any, meta?: object): any;
-    protected transformProperties(properties: object): any;
+    transformProperties(properties: object): any;
 }
 interface model {
     save(): Promise<object>;

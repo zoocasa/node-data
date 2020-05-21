@@ -1,6 +1,7 @@
 const unfetch = require('isomorphic-unfetch');
 const param = require('jquery-param');
 const { dasherize, pluralize } = require('egjiri-node-kit/dist/strings/strings');
+import { camelizeKeys } from 'egjiri-node-kit/dist/objects/objects';
 
 interface constructorArgs {
   host?: string,
@@ -19,6 +20,27 @@ export default class Adapter {
 
   public async query(params: object) {
     return this.fetch(this.buildUrl(params))
+  }
+
+  public save(properties: object) {
+    return unfetch(this.buildUrl(), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        data: {
+          type: this.getNormalizedModel(),
+          attributes: properties,
+        }
+      }),
+    }).then(async response => {
+      const data = await response.json()
+      if (data.errors) {
+        throw data;
+      }
+      return data;
+    });
   }
 
   protected normalizeParams(params: object) {

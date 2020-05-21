@@ -20,7 +20,7 @@ export default class Store {
     return proxy(normalizedPayload, { meta: normalizedPayload.meta, response, error });
   }
 
-  save(properties) {
-    return this.serializer.createModel(properties).save();
+  save(properties: object): Promise<object> {
+    return this.adapter.save(this.serializer.transformProperties(properties));
   }
 }
