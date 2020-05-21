@@ -21,6 +21,6 @@ export default class Store {
   }
 
   save(properties: object): Promise<object> {
-    return this.adapter.save(this.serializer.transformProperties(properties));
+    return this.adapter.save(properties);
   }
 }

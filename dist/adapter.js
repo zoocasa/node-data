@@ -20,7 +20,7 @@ class Adapter {
             body: JSON.stringify({
                 data: {
                     type: this.getNormalizedModel(),
-                    attributes: properties,
+                    attributes: this.normalizeParams(properties),
                 }
             }),
         }).then(async (response) => {
