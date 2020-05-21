@@ -5,7 +5,8 @@ const param = require('jquery-param');
 const { dasherize, pluralize } = require('egjiri-node-kit/dist/strings/strings');
 class Adapter {
     constructor({ host, namespace, modelName }) {
-        this.resourcePath = this.buildResourcePath(host, namespace, modelName);
+        this.modelName = modelName || this.constructor.name.replace(/Adapter$/, '');
+        this.resourcePath = this.buildResourcePath(host, namespace);
     }
     async query(params) {
         return this.fetch(this.buildUrl(params));
@@ -22,12 +23,14 @@ class Adapter {
         }
         return { payload: null, response, error: response.error || true };
     }
-    buildResourcePath(host, namespace, modelName) {
+    buildResourcePath(host, namespace) {
         host = host || 'http://localhost:4200';
-        modelName = modelName || this.constructor.name.replace(/Adapter$/, '');
-        return [host, namespace, dasherize(pluralize(modelName))].join('/');
+        return [host, namespace, this.getNormalizedModel()].join('/');
     }
-    buildUrl(params) {
+    getNormalizedModel() {
+        return dasherize(pluralize(this.modelName));
+    }
+    buildUrl(params = null) {
         params = param(this.normalizeParams(params));
         if (params) {
             return [this.resourcePath, params].join('?');

@@ -9,10 +9,12 @@ interface constructorArgs {
 }
 
 export default class Adapter {
+  modelName: string;
   resourcePath: string;
 
   constructor({ host, namespace, modelName }: constructorArgs) {
-    this.resourcePath = this.buildResourcePath(host, namespace, modelName);
+    this.modelName = modelName || this.constructor.name.replace(/Adapter$/, '');
+    this.resourcePath = this.buildResourcePath(host, namespace);
   }
 
   public async query(params: object) {
@@ -33,13 +35,16 @@ export default class Adapter {
     return { payload: null, response, error: response.error || true };
   }
 
-  private buildResourcePath(host: string, namespace: string, modelName: string) {
+  private buildResourcePath(host: string, namespace: string) {
     host = host || 'http://localhost:4200';
-    modelName = modelName || this.constructor.name.replace(/Adapter$/, '');
-    return [host, namespace, dasherize(pluralize(modelName))].join('/');
+    return [host, namespace, this.getNormalizedModel()].join('/');
   }
 
-  private buildUrl(params: object) {
+  private getNormalizedModel(): string {
+    return dasherize(pluralize(this.modelName));
+  }
+
+  private buildUrl(params: object = null) {
     params = param(this.normalizeParams(params));
     if (params) {
       return [this.resourcePath, params].join('?');
