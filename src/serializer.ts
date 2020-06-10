@@ -9,8 +9,12 @@ export default class Serializer {
   }
 
   public normalizePayload(payload) {
-    const content = payload.map(item => this.buildModel(item));
-    return this.proxyContent(content)
+    if (Array.isArray(payload)) {
+      const content = payload.map(item => this.buildModel(item));
+      return this.proxyContent(content);
+    } else {
+      return this.buildModel(payload);
+    }
   }
 
   protected buildModel(properties: object) {

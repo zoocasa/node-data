@@ -8,6 +8,7 @@ export default class Adapter {
     resourcePath: string;
     constructor({ host, namespace, modelName }: constructorArgs);
     query(params: object): Promise<any>;
+    queryRecord(id: string | number): Promise<any>;
     save(properties: object): any;
     protected normalizeParams(params: object): object;
     private fetch;

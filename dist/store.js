@@ -14,6 +14,14 @@ class Store {
         const normalizedPayload = this.serializer.normalizePayload(payload);
         return proxy(normalizedPayload, { meta: normalizedPayload.meta, response, error });
     }
+    async queryRecord(id) {
+        const { payload, response, error } = await this.adapter.queryRecord(id);
+        if (error) {
+            return proxy({}, { response, error });
+        }
+        const normalizedPayload = this.serializer.normalizePayload(payload);
+        return proxy(normalizedPayload, { response, error });
+    }
     save(properties) {
         return this.adapter.save(properties);
     }

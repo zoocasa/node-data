@@ -5,5 +5,6 @@ export default class Store {
     serializer: Serializer;
     constructor(adapter: Adapter, serializer: Serializer);
     query(params?: object): Promise<any>;
+    queryRecord(id: string | number): Promise<object>;
     save(properties: object): Promise<object>;
 }

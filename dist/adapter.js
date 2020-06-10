@@ -11,6 +11,9 @@ class Adapter {
     async query(params) {
         return this.fetch(this.buildUrl(params));
     }
+    async queryRecord(id) {
+        return this.fetch(this.buildUrl() + '/' + id);
+    }
     save(properties) {
         return unfetch(this.buildUrl(), {
             method: 'POST',

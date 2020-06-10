@@ -22,6 +22,10 @@ export default class Adapter {
     return this.fetch(this.buildUrl(params))
   }
 
+  public async queryRecord(id: string | number) {
+    return this.fetch(this.buildUrl() + '/' + id);
+  }
+
   public save(properties: object) {
     return unfetch(this.buildUrl(), {
       method: 'POST',

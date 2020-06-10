@@ -7,8 +7,13 @@ class Serializer {
         this.createModel = createModel;
     }
     normalizePayload(payload) {
-        const content = payload.map(item => this.buildModel(item));
-        return this.proxyContent(content);
+        if (Array.isArray(payload)) {
+            const content = payload.map(item => this.buildModel(item));
+            return this.proxyContent(content);
+        }
+        else {
+            return this.buildModel(payload);
+        }
     }
     buildModel(properties) {
         properties = this.transformProperties(properties);

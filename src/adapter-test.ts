@@ -23,4 +23,9 @@ test('test Adapter', async function(assert) {
   assert.deepEqual(result.response.status, 200);
   assert.deepEqual(result.error.type, 'invalid-json');
   assert.deepEqual(result.payload, null);
+
+  adapter = new Adapter({ host: 'https://www.zoocasa.com', namespace: 'services/api/v3', modelName: 'Listing'});
+  result = await adapter.queryRecord('6909598');
+  assert.equal(result.response.status, 200);
+  assert.equal(result.payload.data.id, '6909598');
 });
