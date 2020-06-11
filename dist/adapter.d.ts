@@ -10,6 +10,7 @@ export default class Adapter {
     query(params: object): Promise<any>;
     queryRecord(id: string | number): Promise<any>;
     save(properties: object): any;
+    headers(): object;
     protected normalizeParams(params: object): object;
     private fetch;
     private buildResourcePath;

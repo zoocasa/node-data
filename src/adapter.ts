@@ -31,6 +31,7 @@ export default class Adapter {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        ...this.headers()
       },
       body: JSON.stringify({
         data: {
@@ -45,6 +46,10 @@ export default class Adapter {
       }
       return data;
     });
+  }
+
+  public headers(): object {
+    return {}
   }
 
   protected normalizeParams(params: object) {
