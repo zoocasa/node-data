@@ -29,10 +29,7 @@ export default class Adapter {
   public save(properties: object) {
     return unfetch(this.buildUrl(), {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        ...this.headers()
-      },
+      headers: this.buildHeaders(),
       body: JSON.stringify({
         data: {
           type: this.getNormalizedModel(),
@@ -57,7 +54,7 @@ export default class Adapter {
   }
 
   private async fetch(url: string) {
-    const response = await unfetch(url);
+    const response = await unfetch(url, this.buildHeaders());
     if (response.ok) {
       return response.json()
         .then((payload: object[]) => ({ payload, response, error: false }))
@@ -81,6 +78,15 @@ export default class Adapter {
       return [this.resourcePath, params].join('?');
     } else {
       return this.resourcePath;
+    }
+  }
+
+  private buildHeaders(): object {
+    return {
+      headers: {
+        'Content-Type': 'application/json',
+        ...this.headers()
+      },
     }
   }
 }
