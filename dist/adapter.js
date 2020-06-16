@@ -17,7 +17,7 @@ class Adapter {
     save(properties) {
         return unfetch(this.buildUrl(), {
             method: 'POST',
-            headers: this.buildHeaders(),
+            headers: this.headers(),
             body: JSON.stringify({
                 data: {
                     type: this.getNormalizedModel(),
@@ -39,7 +39,7 @@ class Adapter {
         return params;
     }
     async fetch(url) {
-        const response = await unfetch(url, this.buildHeaders());
+        const response = await unfetch(url, { headers: this.headers() });
         if (response.ok) {
             return response.json()
                 .then((payload) => ({ payload, response, error: false }))
@@ -62,14 +62,6 @@ class Adapter {
         else {
             return this.resourcePath;
         }
-    }
-    buildHeaders() {
-        return {
-            headers: {
-                'Content-Type': 'application/json',
-                ...this.headers()
-            },
-        };
     }
 }
 exports.default = Adapter;

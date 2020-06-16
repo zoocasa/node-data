@@ -16,6 +16,5 @@ export default class Adapter {
     private buildResourcePath;
     private getNormalizedModel;
     private buildUrl;
-    private buildHeaders;
 }
 export {};
