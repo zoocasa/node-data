@@ -25,6 +25,9 @@ class Adapter {
                 }
             }),
         }).then(async (response) => {
+            if (response.status === 204) {
+                return null;
+            }
             const data = await response.json();
             if (data.errors) {
                 throw data;
