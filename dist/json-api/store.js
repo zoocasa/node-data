@@ -1,6 +1,9 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const store_1 = require("../store");
+const store_1 = __importDefault(require("../store"));
 const strings_1 = require("egjiri-node-kit/dist/strings/strings");
 class JSONAPIStore extends store_1.default {
     save(properties) {

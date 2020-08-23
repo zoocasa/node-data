@@ -15,7 +15,7 @@ export default class Adapter {
 
   constructor({ host, namespace, modelName }: constructorArgs) {
     this.modelName = modelName || this.constructor.name.replace(/Adapter$/, '');
-    this.resourcePath = this.buildResourcePath(host, namespace);
+    this.resourcePath = this.buildResourcePath(namespace, host);
   }
 
   public async query(params: Record<string, unknown>) {
@@ -66,8 +66,8 @@ export default class Adapter {
     return { payload: null, response, error: response.error || true };
   }
 
-  private buildResourcePath(host: string, namespace: string) {
-    host = host || 'http://localhost:4200';
+  private buildResourcePath(namespace: string, host?: string) {
+  host = host || 'http://localhost:4200';
     return [host, namespace, this.getNormalizedModel()].join('/');
   }
 
@@ -75,9 +75,9 @@ export default class Adapter {
     return dasherize(pluralize(this.modelName));
   }
 
-  private buildUrl(params: Record<string, unknown> = null) {
-    params = param(this.normalizeParams(params));
+  private buildUrl(params?: Record<string, unknown>) {
     if (params) {
+      params = param(this.normalizeParams(params));
       return [this.resourcePath, params].join('?');
     } else {
       return this.resourcePath;

@@ -6,7 +6,7 @@ const { dasherize, pluralize } = require('egjiri-node-kit/dist/strings/strings')
 class Adapter {
     constructor({ host, namespace, modelName }) {
         this.modelName = modelName || this.constructor.name.replace(/Adapter$/, '');
-        this.resourcePath = this.buildResourcePath(host, namespace);
+        this.resourcePath = this.buildResourcePath(namespace, host);
     }
     async query(params) {
         return this.fetch(this.buildUrl(params));
@@ -50,16 +50,16 @@ class Adapter {
         }
         return { payload: null, response, error: response.error || true };
     }
-    buildResourcePath(host, namespace) {
+    buildResourcePath(namespace, host) {
         host = host || 'http://localhost:4200';
         return [host, namespace, this.getNormalizedModel()].join('/');
     }
     getNormalizedModel() {
         return dasherize(pluralize(this.modelName));
     }
-    buildUrl(params = null) {
-        params = param(this.normalizeParams(params));
+    buildUrl(params) {
         if (params) {
+            params = param(this.normalizeParams(params));
             return [this.resourcePath, params].join('?');
         }
         else {
