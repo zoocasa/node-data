@@ -15,10 +15,10 @@ export default class JSONAPISerializer extends Serializer {
 type jsonApiResource = {
   id: number | string,
   type: string,
-  attributes: object,
+  attributes: Record<string, unknown>,
 }
 
 type jsonApiPayload = {
   data: jsonApiResource[],
-  meta: object,
+  meta: Record<string, unknown>,
 }

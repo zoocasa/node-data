@@ -5,10 +5,10 @@ export default class JSONAPISerializer extends Serializer {
 declare type jsonApiResource = {
     id: number | string;
     type: string;
-    attributes: object;
+    attributes: Record<string, unknown>;
 };
 declare type jsonApiPayload = {
     data: jsonApiResource[];
-    meta: object;
+    meta: Record<string, unknown>;
 };
 export {};

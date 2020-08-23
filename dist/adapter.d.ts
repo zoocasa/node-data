@@ -7,11 +7,11 @@ export default class Adapter {
     modelName: string;
     resourcePath: string;
     constructor({ host, namespace, modelName }: constructorArgs);
-    query(params: object): Promise<any>;
+    query(params: Record<string, unknown>): Promise<any>;
     queryRecord(id: string | number): Promise<any>;
-    save(properties: object): any;
-    headers(): object;
-    protected normalizeParams(params: object): object;
+    save(properties: Record<string, unknown>): any;
+    headers(): Record<string, unknown>;
+    protected normalizeParams(params: Record<string, unknown>): Record<string, unknown>;
     private fetch;
     private buildResourcePath;
     private getNormalizedModel;

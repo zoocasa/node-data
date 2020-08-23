@@ -18,7 +18,7 @@ export default class Adapter {
     this.resourcePath = this.buildResourcePath(host, namespace);
   }
 
-  public async query(params: object) {
+  public async query(params: Record<string, unknown>) {
     return this.fetch(this.buildUrl(params))
   }
 
@@ -26,7 +26,7 @@ export default class Adapter {
     return this.fetch(this.buildUrl() + '/' + id);
   }
 
-  public save(properties: object) {
+  public save(properties: Record<string, unknown>) {
     return unfetch(this.buildUrl(), {
       method: 'POST',
       headers: this.headers(),
@@ -48,11 +48,11 @@ export default class Adapter {
     });
   }
 
-  public headers(): object {
+  public headers(): Record<string, unknown> {
     return {}
   }
 
-  protected normalizeParams(params: object) {
+  protected normalizeParams(params: Record<string, unknown>) {
     return params;
   }
 
@@ -60,7 +60,7 @@ export default class Adapter {
     const response = await unfetch(url, { headers: this.headers() });
     if (response.ok) {
       return response.json()
-        .then((payload: object[]) => ({ payload, response, error: false }))
+        .then((payload: Record<string, unknown>[]) => ({ payload, response, error: false }))
         .catch(error => ({ payload: null, response, error }));
     }
     return { payload: null, response, error: response.error || true };
@@ -75,7 +75,7 @@ export default class Adapter {
     return dasherize(pluralize(this.modelName));
   }
 
-  private buildUrl(params: object = null) {
+  private buildUrl(params: Record<string, unknown> = null) {
     params = param(this.normalizeParams(params));
     if (params) {
       return [this.resourcePath, params].join('?');

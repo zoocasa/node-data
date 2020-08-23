@@ -11,7 +11,7 @@ export default class Store {
     this.serializer = serializer;
   }
 
-  async query(params: object = {}) {
+  async query(params: Record<string, unknown> = {}) {
     const { payload, response, error } = await this.adapter.query(params);
     if (error) {
       return proxy([], { response, error });
@@ -29,7 +29,7 @@ export default class Store {
     return proxy(normalizedPayload, { response, error });
   }
 
-  save(properties: object): Promise<object> {
+  save(properties: Record<string, unknown>): Promise<object> {
     return this.adapter.save(properties);
   }
 }

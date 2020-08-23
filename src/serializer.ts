@@ -17,18 +17,18 @@ export default class Serializer {
     }
   }
 
-  protected buildModel(properties: object) {
+  protected buildModel(properties: Record<string, unknown>) {
     properties = this.transformProperties(properties);
     return this.createModel(properties);
   }
 
-  protected proxyContent(content: any, meta: object = {}) {
+  protected proxyContent(content: any, meta: Record<string, unknown> = {}) {
     return proxy(content, { meta: this.transformProperties(meta) });
   }
 
-  public transformProperties(properties: object) {
+  public transformProperties(properties: Record<string, unknown>) {
     return camelizeKeys(properties);
   }
 }
 
-type modelCreator = (modelProperties: object) => object;
+type modelCreator = (modelProperties: Record<string, unknown>) => object;
