@@ -7,15 +7,16 @@
   "private": false,
   "repository": "git@github.com:zoocasa/node-data.git",
   "scripts": {
-    "build": "tsc",
+    "lint": "eslint .",
     "clean": "rm -rf dist",
+    "build": "yarn clean && tsc",
     "watch": "tsc -w",
     "start": "yarn watch",
     "test": "tsc && qunit dist",
     "test:live": "nodemon -w ./dist --exec 'clear && qunit dist'"
   },
   "dependencies": {
-    "egjiri-node-kit": "^0.6.0",
+    "egjiri-node-kit": "^0.11.0",
     "isomorphic-unfetch": "^3.0.0",
     "jquery-param": "^1.0.2"
   },
