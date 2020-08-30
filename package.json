@@ -10,10 +10,8 @@
     "lint": "eslint .",
     "clean": "rm -rf dist",
     "build": "yarn clean && tsc",
-    "watch": "tsc -w",
-    "start": "yarn watch",
-    "test": "tsc && qunit dist",
-    "test:live": "nodemon -w ./dist --exec 'clear && qunit dist'"
+    "test": "nodemon -w src -e .ts -x 'clear && jest'",
+    "coverage": "jest --coverage && echo \"Coverage: $(cat ./coverage/coverage-summary.json | jq '.total.lines.pct')%\" && open coverage/index.html"
   },
   "dependencies": {
     "egjiri-node-kit": "^0.11.0",
@@ -21,12 +19,14 @@
     "jquery-param": "^1.0.2"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.10",
     "@types/node": "^12.0.12",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
     "eslint": "^7.7.0",
+    "jest": "^26.4.2",
     "nodemon": "^1.18.3",
-    "qunit": "^2.6.1",
+    "ts-jest": "^26.3.0",
     "ts-node": "^8.3.0",
     "typescript": "^3.0.1"
   }

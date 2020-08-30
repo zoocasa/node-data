@@ -1,8 +1,7 @@
-import { test } from 'qunit';
 import Serializer from './serializer';
-import { testCreateModel } from '../serializer-test';
+import { testCreateModel } from '../serializer.test';
 
-test('test JSONAPISerializer', function(assert) {
+test('test JSONAPISerializer', () => {
   const payload = {
     data: [
       { id: 1, type: 'users', attributes: { 'first-name': 'John' }},
@@ -16,6 +15,6 @@ test('test JSONAPISerializer', function(assert) {
     },
   };
   const response = new Serializer(testCreateModel).normalizePayload(payload);
-  assert.deepEqual(response, [{ id: 1, firstName: 'John' }, { id: 2, firstName: 'Jane' }]);
-  assert.deepEqual(response.meta, { pageNumber: 1, pageSize: 25, totalPages: 1, totalCount: 2 });
+  expect(response).toEqual([{ id: 1, firstName: 'John' }, { id: 2, firstName: 'Jane' }]);
+  expect(response.meta).toEqual({ pageNumber: 1, pageSize: 25, totalPages: 1, totalCount: 2 });
 });
