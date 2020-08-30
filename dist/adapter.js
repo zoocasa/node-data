@@ -1,8 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const unfetch = require('isomorphic-unfetch');
-const param = require('jquery-param');
-const { dasherize, pluralize } = require('egjiri-node-kit/dist/strings/strings');
+const isomorphic_unfetch_1 = __importDefault(require("isomorphic-unfetch"));
+const jquery_param_1 = __importDefault(require("jquery-param"));
+const strings_1 = require("egjiri-node-kit/dist/strings/strings");
 class Adapter {
     constructor({ host, namespace, modelName }) {
         this.modelName = modelName || this.constructor.name.replace(/Adapter$/, '');
@@ -15,14 +18,14 @@ class Adapter {
         return this.fetch(this.buildUrl() + '/' + id);
     }
     save(properties) {
-        return unfetch(this.buildUrl(), {
+        return isomorphic_unfetch_1.default(this.buildUrl(), {
             method: 'POST',
             headers: this.headers(),
             body: JSON.stringify({
                 data: {
                     type: this.getNormalizedModel(),
                     attributes: this.normalizeParams(properties),
-                }
+                },
             }),
         }).then(async (response) => {
             if (response.status === 204) {
@@ -42,7 +45,7 @@ class Adapter {
         return params;
     }
     async fetch(url) {
-        const response = await unfetch(url, { headers: this.headers() });
+        const response = await isomorphic_unfetch_1.default(url, { headers: this.headers() });
         if (response.ok) {
             return response.json()
                 .then((payload) => ({ payload, response, error: false }))
@@ -55,11 +58,11 @@ class Adapter {
         return [host, namespace, this.getNormalizedModel()].join('/');
     }
     getNormalizedModel() {
-        return dasherize(pluralize(this.modelName));
+        return strings_1.dasherize(strings_1.pluralize(this.modelName));
     }
     buildUrl(params) {
         if (params) {
-            params = param(this.normalizeParams(params));
+            params = jquery_param_1.default(this.normalizeParams(params));
             return [this.resourcePath, params].join('?');
         }
         else {

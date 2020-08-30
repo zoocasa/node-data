@@ -1,7 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const { camelizeKeys } = require('egjiri-node-kit/dist/objects/objects');
-const proxy = require('egjiri-node-kit/dist/proxy/proxy').default;
+const objects_1 = require("egjiri-node-kit/dist/objects/objects");
+const proxy_1 = __importDefault(require("egjiri-node-kit/dist/proxy/proxy"));
 class Serializer {
     constructor(createModel) {
         this.createModel = createModel;
@@ -20,10 +23,10 @@ class Serializer {
         return this.createModel(properties);
     }
     proxyContent(content, meta = {}) {
-        return proxy(content, { meta: this.transformProperties(meta) });
+        return proxy_1.default(content, { meta: this.transformProperties(meta) });
     }
     transformProperties(properties) {
-        return camelizeKeys(properties);
+        return objects_1.camelizeKeys(properties);
     }
 }
 exports.default = Serializer;

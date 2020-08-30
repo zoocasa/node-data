@@ -1,6 +1,6 @@
-const proxy = require('egjiri-node-kit/dist/proxy/proxy').default;
-import Adapter from "./adapter";
-import Serializer from "./serializer";
+import proxy from 'egjiri-node-kit/dist/proxy/proxy';
+import Adapter from './adapter';
+import Serializer from './serializer';
 
 export default class Store {
   adapter: Adapter;
@@ -20,7 +20,7 @@ export default class Store {
     return proxy(normalizedPayload, { meta: normalizedPayload.meta, response, error });
   }
 
-  async queryRecord(id: string | number): Promise<object> {
+  async queryRecord(id: string | number) {
     const { payload, response, error } = await this.adapter.queryRecord(id);
     if (error) {
       return proxy({}, { response, error });
@@ -29,7 +29,7 @@ export default class Store {
     return proxy(normalizedPayload, { response, error });
   }
 
-  save(properties: Record<string, unknown>): Promise<object> {
+  save(properties: Record<string, unknown>) {
     return this.adapter.save(properties);
   }
 }

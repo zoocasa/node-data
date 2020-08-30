@@ -13,7 +13,7 @@ test('test JSONAPISerializer', function(assert) {
       'page-size': 25,
       'total-pages': 1,
       'total-count': 2,
-    }
+    },
   };
   const response = new Serializer(testCreateModel).normalizePayload(payload);
   assert.deepEqual(response, [{ id: 1, firstName: 'John' }, { id: 2, firstName: 'Jane' }]);

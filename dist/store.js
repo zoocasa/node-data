@@ -1,6 +1,9 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const proxy = require('egjiri-node-kit/dist/proxy/proxy').default;
+const proxy_1 = __importDefault(require("egjiri-node-kit/dist/proxy/proxy"));
 class Store {
     constructor(adapter, serializer) {
         this.adapter = adapter;
@@ -9,18 +12,18 @@ class Store {
     async query(params = {}) {
         const { payload, response, error } = await this.adapter.query(params);
         if (error) {
-            return proxy([], { response, error });
+            return proxy_1.default([], { response, error });
         }
         const normalizedPayload = this.serializer.normalizePayload(payload);
-        return proxy(normalizedPayload, { meta: normalizedPayload.meta, response, error });
+        return proxy_1.default(normalizedPayload, { meta: normalizedPayload.meta, response, error });
     }
     async queryRecord(id) {
         const { payload, response, error } = await this.adapter.queryRecord(id);
         if (error) {
-            return proxy({}, { response, error });
+            return proxy_1.default({}, { response, error });
         }
         const normalizedPayload = this.serializer.normalizePayload(payload);
-        return proxy(normalizedPayload, { response, error });
+        return proxy_1.default(normalizedPayload, { response, error });
     }
     save(properties) {
         return this.adapter.save(properties);

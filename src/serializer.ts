@@ -1,5 +1,5 @@
-const { camelizeKeys } = require('egjiri-node-kit/dist/objects/objects');
-const proxy = require('egjiri-node-kit/dist/proxy/proxy').default;
+import { camelizeKeys } from 'egjiri-node-kit/dist/objects/objects';
+import proxy from 'egjiri-node-kit/dist/proxy/proxy';
 
 export default class Serializer {
   createModel: modelCreator;
@@ -22,7 +22,7 @@ export default class Serializer {
     return this.createModel(properties);
   }
 
-  protected proxyContent(content: any, meta: Record<string, unknown> = {}) {
+  protected proxyContent(content, meta: Record<string, unknown> = {}) {
     return proxy(content, { meta: this.transformProperties(meta) });
   }
 
@@ -31,4 +31,4 @@ export default class Serializer {
   }
 }
 
-type modelCreator = (modelProperties: Record<string, unknown>) => object;
+type modelCreator = (modelProperties: Record<string, unknown>) => unknown;

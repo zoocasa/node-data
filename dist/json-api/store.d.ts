@@ -1,4 +1,4 @@
 import Store from '../store';
 export default class JSONAPIStore extends Store {
-    save(properties: any): Promise<object>;
+    save(properties: any): any;
 }

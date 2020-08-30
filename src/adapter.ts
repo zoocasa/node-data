@@ -1,7 +1,6 @@
-const unfetch = require('isomorphic-unfetch');
-const param = require('jquery-param');
-const { dasherize, pluralize } = require('egjiri-node-kit/dist/strings/strings');
-import { camelizeKeys } from 'egjiri-node-kit/dist/objects/objects';
+import unfetch from 'isomorphic-unfetch';
+import param from 'jquery-param';
+import { dasherize, pluralize } from 'egjiri-node-kit/dist/strings/strings';
 
 interface constructorArgs {
   host?: string,
@@ -19,7 +18,7 @@ export default class Adapter {
   }
 
   public async query(params: Record<string, unknown>) {
-    return this.fetch(this.buildUrl(params))
+    return this.fetch(this.buildUrl(params));
   }
 
   public async queryRecord(id: string | number) {
@@ -34,13 +33,13 @@ export default class Adapter {
         data: {
           type: this.getNormalizedModel(),
           attributes: this.normalizeParams(properties),
-        }
+        },
       }),
     }).then(async response => {
       if (response.status === 204) {
         return null;
       }
-      const data = await response.json()
+      const data = await response.json();
       if (data.errors) {
         throw data;
       }
@@ -49,7 +48,7 @@ export default class Adapter {
   }
 
   public headers(): Record<string, unknown> {
-    return {}
+    return {};
   }
 
   protected normalizeParams(params: Record<string, unknown>) {
@@ -67,7 +66,7 @@ export default class Adapter {
   }
 
   private buildResourcePath(namespace: string, host?: string) {
-  host = host || 'http://localhost:4200';
+    host = host || 'http://localhost:4200';
     return [host, namespace, this.getNormalizedModel()].join('/');
   }
 
