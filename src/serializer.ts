@@ -1,6 +1,9 @@
 import { camelizeKeys } from 'egjiri-node-kit/dist/objects/objects';
 import proxy from 'egjiri-node-kit/dist/proxy/proxy';
 
+type modelCreator = (modelProperties: Record<string, unknown>) => any;
+type apiPayload = Record<string, unknown> | Record<string, unknown>[];
+
 export default class Serializer {
   createModel: modelCreator;
 
@@ -8,7 +11,7 @@ export default class Serializer {
     this.createModel = createModel;
   }
 
-  public normalizePayload(payload) {
+  public normalizePayload(payload: apiPayload) {
     if (Array.isArray(payload)) {
       const content = payload.map(item => this.buildModel(item));
       return this.proxyContent(content);
@@ -22,7 +25,7 @@ export default class Serializer {
     return this.createModel(properties);
   }
 
-  protected proxyContent(content, meta: Record<string, unknown> = {}) {
+  protected proxyContent(content: any, meta: Record<string, unknown> = {}) {
     return proxy(content, { meta: this.transformProperties(meta) });
   }
 
@@ -30,5 +33,3 @@ export default class Serializer {
     return camelizeKeys(properties);
   }
 }
-
-type modelCreator = (modelProperties: Record<string, unknown>) => unknown;

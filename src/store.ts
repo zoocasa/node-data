@@ -16,7 +16,7 @@ export default class Store {
     if (error) {
       return proxy([], { response, error });
     }
-    const normalizedPayload = this.serializer.normalizePayload(payload);
+    const normalizedPayload = this.serializer.normalizePayload(payload as Record<string, unknown>[]);
     return proxy(normalizedPayload, { meta: normalizedPayload.meta, response, error });
   }
 
@@ -25,7 +25,7 @@ export default class Store {
     if (error) {
       return proxy({}, { response, error });
     }
-    const normalizedPayload = this.serializer.normalizePayload(payload);
+    const normalizedPayload = this.serializer.normalizePayload(payload as Record<string, unknown>[]);
     return proxy(normalizedPayload, { response, error });
   }
 

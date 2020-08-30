@@ -1,6 +1,6 @@
 import Serializer from './serializer';
 
-export const testCreateModel = properties => properties;
+export const testCreateModel = (properties: Record<string, unknown>) => properties;
 
 test('test Serializer', () => {
   const serializer = new Serializer(testCreateModel);

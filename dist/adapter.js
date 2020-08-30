@@ -51,7 +51,7 @@ class Adapter {
                 .then((payload) => ({ payload, response, error: false }))
                 .catch(error => ({ payload: null, response, error }));
         }
-        return { payload: null, response, error: response.error || true };
+        return { payload: null, response, error: true };
     }
     buildResourcePath(namespace, host) {
         host = host || 'http://localhost:4200';
@@ -62,8 +62,8 @@ class Adapter {
     }
     buildUrl(params) {
         if (params) {
-            params = jquery_param_1.default(this.normalizeParams(params));
-            return [this.resourcePath, params].join('?');
+            const urlParams = jquery_param_1.default(this.normalizeParams(params));
+            return [this.resourcePath, urlParams].join('?');
         }
         else {
             return this.resourcePath;

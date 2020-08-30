@@ -567,6 +567,11 @@
     jest-diff "^25.2.1"
     pretty-format "^25.2.1"
 
+"@types/jquery-param@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@types/jquery-param/-/jquery-param-1.0.2.tgz#535a7885ef27c487f7842cb1682735470faa0f4f"
+  integrity sha512-2QDE38MQ/sD0emCkAE8FmSbKLAcunEz8JYJhXY/rqT7rfUplqiIpCiPGfcsns5Y+lVK2EYEayP72VZN4IDegUg==
+
 "@types/json-schema@^7.0.3":
   version "7.0.5"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.5.tgz#dcce4430e64b443ba8945f0290fb564ad5bac6dd"

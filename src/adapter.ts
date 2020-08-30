@@ -47,7 +47,7 @@ export default class Adapter {
     });
   }
 
-  public headers(): Record<string, unknown> {
+  public headers(): Record<string, string> {
     return {};
   }
 
@@ -59,10 +59,10 @@ export default class Adapter {
     const response = await unfetch(url, { headers: this.headers() });
     if (response.ok) {
       return response.json()
-        .then((payload: Record<string, unknown>[]) => ({ payload, response, error: false }))
+        .then((payload: Record<string, unknown> | Record<string, unknown>[]) => ({ payload, response, error: false }))
         .catch(error => ({ payload: null, response, error }));
     }
-    return { payload: null, response, error: response.error || true };
+    return { payload: null, response, error: true };
   }
 
   private buildResourcePath(namespace: string, host?: string) {
@@ -76,8 +76,8 @@ export default class Adapter {
 
   private buildUrl(params?: Record<string, unknown>) {
     if (params) {
-      params = param(this.normalizeParams(params));
-      return [this.resourcePath, params].join('?');
+      const urlParams = param(this.normalizeParams(params));
+      return [this.resourcePath, urlParams].join('?');
     } else {
       return this.resourcePath;
     }
