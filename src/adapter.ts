@@ -1,6 +1,6 @@
 import unfetch from 'isomorphic-unfetch';
 import param from 'jquery-param';
-import { dasherize, pluralize } from 'egjiri-node-kit/dist/strings/strings';
+import { dasherize, pluralize } from '@egjiri/node-kit/strings';
 
 interface constructorArgs {
   host?: string,

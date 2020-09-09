@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const proxy_1 = __importDefault(require("egjiri-node-kit/dist/proxy/proxy"));
+const proxy_1 = __importDefault(require("@egjiri/node-kit/proxy"));
 class Store {
     constructor(adapter, serializer) {
         this.adapter = adapter;

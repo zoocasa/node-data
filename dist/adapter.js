@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const isomorphic_unfetch_1 = __importDefault(require("isomorphic-unfetch"));
 const jquery_param_1 = __importDefault(require("jquery-param"));
-const strings_1 = require("egjiri-node-kit/dist/strings/strings");
+const strings_1 = require("@egjiri/node-kit/strings");
 class Adapter {
     constructor({ host, namespace, modelName }) {
         this.modelName = modelName || this.constructor.name.replace(/Adapter$/, '');

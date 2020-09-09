@@ -271,6 +271,11 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@egjiri/node-kit@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@egjiri/node-kit/-/node-kit-1.0.3.tgz#ac6ffe08826595b18fa70e668755ce6a96b82ead"
+  integrity sha512-B8aOtZ/fTUjxBodPMd2V64U28gWaovIY270/a+fL3BnIjLjBHEK0JsOp+wnxjOVsrisWqA6LLhC0b8eFC+IBRQ==
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz#fd3db1d59ecf7cf121e80650bb86712f9b55eced"
@@ -1454,11 +1459,6 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
-
-egjiri-node-kit@^0.11.0:
-  version "0.11.2"
-  resolved "https://registry.yarnpkg.com/egjiri-node-kit/-/egjiri-node-kit-0.11.2.tgz#9b22dd2655a14f71a84a629ae2621439551eb45f"
-  integrity sha512-6g0idyK6eVrpWKPw9AZKU82LuyjNahx1gOxhxgXE/IgIin2mHPAzXJ4BEQ0bp4qt7YyUloFcRlQA+GGPd5efLg==
 
 emittery@^0.7.1:
   version "0.7.1"

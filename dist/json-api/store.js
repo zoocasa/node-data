@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const store_1 = __importDefault(require("../store"));
-const strings_1 = require("egjiri-node-kit/dist/strings/strings");
+const strings_1 = require("@egjiri/node-kit/strings");
 class JSONAPIStore extends store_1.default {
     save(properties) {
         return super.save(properties).catch((response) => {

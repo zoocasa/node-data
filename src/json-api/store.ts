@@ -1,5 +1,5 @@
 import Store from '../store';
-import { camelize } from 'egjiri-node-kit/dist/strings/strings';
+import { camelize } from '@egjiri/node-kit/strings';
 
 type ErrorObjects = {
   errors: {

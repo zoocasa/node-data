@@ -1,4 +1,4 @@
-import { dasherizeKeys } from 'egjiri-node-kit/dist/objects/objects';
+import { dasherizeKeys } from '@egjiri/node-kit/objects';
 import Adapter from '../adapter';
 
 export default class JSONAPIAdapter extends Adapter {

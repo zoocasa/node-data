@@ -1,5 +1,5 @@
-import { camelizeKeys } from 'egjiri-node-kit/dist/objects/objects';
-import proxy from 'egjiri-node-kit/dist/proxy/proxy';
+import { camelizeKeys } from '@egjiri/node-kit/objects';
+import proxy from '@egjiri/node-kit/proxy';
 
 type modelCreator = (modelProperties: Record<string, unknown>) => any;
 type apiPayload = Record<string, unknown> | Record<string, unknown>[];
