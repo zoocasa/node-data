@@ -1,6 +1,6 @@
 {
   "name": "@zoocasa/node-data",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Endri Gjiri",
   "description": "A library to standardize api calls and responses",
   "license": "MIT",
