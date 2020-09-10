@@ -17,7 +17,7 @@ export default class Store {
       return proxy([], { response, error });
     }
     const normalizedPayload = this.serializer.normalizePayload(payload as Record<string, unknown>[]);
-    return proxy(normalizedPayload, { meta: normalizedPayload.meta, response, error });
+    return proxy<Record<string, unknown>[]>(normalizedPayload, { meta: normalizedPayload.meta, response, error });
   }
 
   async queryRecord(id: string | number) {
@@ -26,7 +26,7 @@ export default class Store {
       return proxy({}, { response, error });
     }
     const normalizedPayload = this.serializer.normalizePayload(payload as Record<string, unknown>[]);
-    return proxy(normalizedPayload, { response, error });
+    return proxy<Record<string, unknown>>(normalizedPayload, { response, error });
   }
 
   save(properties: Record<string, unknown>) {
