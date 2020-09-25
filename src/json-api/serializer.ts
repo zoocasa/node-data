@@ -6,10 +6,10 @@ export default class JSONAPISerializer extends Serializer {
       const content = payload.data.map(item => {
         return this.buildModel({ id: item.id, ...item.attributes, ...extractRelationships(item.relationships) });
       });
-      return this.proxyContent(content, payload.meta);
+      return this.proxyContent(content, (payload as jsonAPIIndexPayload).meta);
     } else {
-      const { id, attributes } = payload.data as jsonApiResource;
-      return this.buildModel({ id, ...attributes });
+      const { id, attributes, relationships } = (payload as jsonAPIShowPayload).data;
+      return this.buildModel({ id, ...attributes, ...extractRelationships(relationships) });
     }
   }
 }
@@ -34,7 +34,13 @@ type jsonApiResource = {
   }>
 }
 
-type jsonApiPayload = {
+type jsonApiPayload = jsonAPIIndexPayload | jsonAPIShowPayload
+
+type jsonAPIIndexPayload = {
   data: jsonApiResource[],
   meta: Record<string, unknown>,
+}
+
+type jsonAPIShowPayload = {
+  data: jsonApiResource,
 }
