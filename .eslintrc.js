@@ -25,6 +25,8 @@ module.exports = {
     'keyword-spacing': 'error',
     'comma-spacing': ['error', { before: false, after: true }],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off', // Allow type overwrite with "!"
+    '@typescript-eslint/no-explicit-any': 'off', // TODO: Remove this when everything is properly typed without ":any" fields
   },
   globals: {
     module: true,
