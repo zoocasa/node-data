@@ -1,6 +1,7 @@
 import proxy from '@egjiri/node-kit/proxy';
-import Adapter from './adapter';
-import Serializer from './serializer';
+
+import type Adapter from './adapter';
+import type Serializer from './serializer';
 
 export default class Store {
   adapter: Adapter;
