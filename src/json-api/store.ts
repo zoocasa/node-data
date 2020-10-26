@@ -4,11 +4,11 @@ import { camelize } from '@egjiri/node-kit/strings';
 type ErrorObjects = {
   errors: {
     source?: {
-      pointer?: string,
-    },
-    title?: string,
-  }[]
-}
+      pointer?: string;
+    };
+    title?: string;
+  }[];
+};
 
 export default class JSONAPIStore extends Store {
   save(properties: Record<string, unknown>) {

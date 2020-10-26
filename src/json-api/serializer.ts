@@ -23,24 +23,24 @@ function extractRelationships(relationshipsData: jsonApiResource['relationships'
 }
 
 type jsonApiResource = {
-  id: number | string,
-  type: string,
-  attributes: Record<string, unknown>,
+  id: number | string;
+  type: string;
+  attributes: Record<string, unknown>;
   relationships?: Record<string, {
     data: {
-      id: string | number,
-      type: string
-    }
-  }>
-}
+      id: string | number;
+      type: string;
+    };
+  }>;
+};
 
-type jsonApiPayload = jsonAPIIndexPayload | jsonAPIShowPayload
+type jsonApiPayload = jsonAPIIndexPayload | jsonAPIShowPayload;
 
 type jsonAPIIndexPayload = {
-  data: jsonApiResource[],
-  meta: Record<string, unknown>,
-}
+  data: jsonApiResource[];
+  meta: Record<string, unknown>;
+};
 
 type jsonAPIShowPayload = {
-  data: jsonApiResource,
-}
+  data: jsonApiResource;
+};

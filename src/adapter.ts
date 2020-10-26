@@ -3,9 +3,9 @@ import param from 'jquery-param';
 import { dasherize, pluralize } from '@egjiri/node-kit/strings';
 
 interface constructorArgs {
-  host?: string,
-  namespace: string,
-  modelName?: string,
+  host?: string;
+  namespace: string;
+  modelName?: string;
 }
 
 export default class Adapter {
