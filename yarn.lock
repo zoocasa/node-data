@@ -271,11 +271,6 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@egjiri/node-kit@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@egjiri/node-kit/-/node-kit-1.1.0.tgz#2e2f10d5387259faa58ea2c4fed0badaeb7c8cbe"
-  integrity sha512-+6cFlUHktzvLTF/KepD6D0/ToCVXP5Qi9xJ8lXPPSJAugD5FR95XFcp4uI/exketlL6nO7Z+XG8bgx51IxVXxA==
-
 "@eslint/eslintrc@^0.1.3":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-0.1.3.tgz#7d1a2b2358552cc04834c0979bd4275362e37085"
@@ -732,6 +727,11 @@
   dependencies:
     "@typescript-eslint/types" "4.3.0"
     eslint-visitor-keys "^2.0.0"
+
+"@zoocasa/node-kit@^3.0.2":
+  version "3.0.2"
+  resolved "https://npm.pkg.github.com/download/@zoocasa/node-kit/3.0.2/c449c085a52b1f7af36829f80d6312d7dc602538e1b1a6703e17f8409d148a1f#ba2ac1f56cd41632d9c10dbcdae37b22de641b5e"
+  integrity sha512-8h5FPMwKmnwkvWRQxxvpOjb77NaHQCp28Q5FlRrJMsViE76M9Zq1retPUikc+bTs4tDDa7VfPJWR8exhag/GMA==
 
 abab@^2.0.3:
   version "2.0.4"
