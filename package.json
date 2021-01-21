@@ -14,7 +14,7 @@
     "coverage": "jest --coverage && echo \"Coverage: $(cat ./coverage/coverage-summary.json | jq '.total.lines.pct')%\" && open coverage/index.html"
   },
   "dependencies": {
-    "@egjiri/node-kit": "^1.1.0",
+    "@zoocasa/node-kit": "^3.0.2",
     "isomorphic-unfetch": "^3.0.0",
     "jquery-param": "^1.0.2"
   },

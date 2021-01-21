@@ -1,5 +1,5 @@
 import Store from '../store';
-import { camelize } from '@egjiri/node-kit/strings';
+import { camelize } from '@zoocasa/node-kit/strings';
 
 type ErrorObjects = {
   errors: {

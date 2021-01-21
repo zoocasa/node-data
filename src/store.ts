@@ -1,4 +1,4 @@
-import proxy from '@egjiri/node-kit/proxy';
+import proxy from './utils/proxy';
 
 import type Adapter from './adapter';
 import type Serializer from './serializer';

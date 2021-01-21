@@ -1,5 +1,5 @@
-import { camelizeKeys } from '@egjiri/node-kit/objects';
-import proxy from '@egjiri/node-kit/proxy';
+import { camelizeKeys } from '@zoocasa/node-kit/objects';
+import proxy from './utils/proxy';
 
 type modelCreator = (modelProperties: Record<string, unknown>) => unknown;
 type apiPayload = Record<string, unknown> | Record<string, unknown>[];

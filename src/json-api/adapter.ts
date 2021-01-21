@@ -1,4 +1,4 @@
-import { dasherizeKeys } from '@egjiri/node-kit/objects';
+import { dasherizeKeys } from '@zoocasa/node-kit/objects';
 import Adapter from '../adapter';
 
 export default class JSONAPIAdapter extends Adapter {
