@@ -10,7 +10,7 @@ test('test Adapter', async () => {
   adapter = new Adapter({ host: 'https://www.zoocasa.com', namespace: 'services/api/v3', modelName: 'TeamMember' });
   result = await adapter.query({ filter: { category: 'technology' }});
   expect(result.response.status).toEqual(200);
-  expect((result.payload as { data: Record<string, unknown>[]}).data.length).toEqual(12);
+  expect((result.payload as { data: Record<string, unknown>[]}).data.length).toBeGreaterThan(0);
 
   adapter = new Adapter({ host: 'https://www.zoocasa.com', namespace: 'services/api/v3', modelName: 'Invalid' });
   result = await adapter.query({ filter: { category: 'technology' }});
