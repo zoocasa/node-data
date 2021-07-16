@@ -25,4 +25,4 @@ test('test Store', async () => {
   result = await store.queryRecord('6909598');
   expect(result.response.status).toEqual(200);
   expect(result.id).toEqual('6909598');
-});
+}, 10000);
